@@ -3,15 +3,22 @@ title: "Making A Plan & Starting an Express.js Project"
 slug: start-an-express-project
 ---
 
-You might know the website [Rotten Tomatoes](https://rottentomatoes.com) it is a site where people can review movies. In this tutorial you are going to build Rotten Potatoes - your very own movie review website.
+You might know the website [EventBrite](https://eventbrite.com). It is a site where people can find great events to attend. In this tutorial you are going to build Make Parties - your very own event website.
 
-By finishing this tutorial you will continue to deepen your knowledge of Node.js and Express.js as well as master the internet-wide paradigms of RESTful and Resourceful routing. You will be Creating, Reading, Updating, and Deleting (CRUD) a single `Review` resource. You will also learn how to use a MongoDB document-based database with Express.js.
+![finished example](finished-example.png)
+
+Before starting this tutorial you should be familiar with the following topics:
+
+* HTML/CSS & Bootstrap
+* JavaScript Fundamentals
+
+By completing this tutorial you will gain exposure to Node.js and Express.js as well as master the internet-wide paradigms of RESTful and Resourceful routing. You will be Creating, Reading, Updating, and Deleting (CRUD) a single `Event` resource, create and delete two other resources `Rsvp` and `Comment`, and associate these resources together. You will also learn how to use a SQL document-based database with Express.js using the Object Document Mapper Sequelize.
 
 Before we get started, let's make a plan for what **User Stories** we're going to build. Then we'll jump in and start Express.js app and add a templating engine.
 
 # How to Plan a Coding Project: User Stories
 
-Software development these days is usually organized into **Agile Sprints** that are usually two weeks long. You'll notice evidence of this if you ever update your apps and read the update text. Sometimes it just says:
+Software development these days is organized into **Agile Sprints** that are usually two weeks long. You'll notice evidence of this if you ever update your apps and read the update text. Sometimes it just says:
 
 ```
 We ship a new version every two weeks...
@@ -23,52 +30,66 @@ During each sprint developers pick a few **User Stories** to build, test, and sh
 
 It is a good habit to build applications one resource at a time, adding all the **Resourceful Routes** for each resource before moving to the next.
 
-So the user stories we can have for this review app will be as follows:
+So the user stories we can have for this event app will be as follows:
 
-1. Users can view all reviews (index)
-1. Users can create a review (new/create)
-1. Users can view one review (show)
-1. Users can delete a review (destroy)
-1. Users can edit a review (edit/update)
+1. Users can view all events (index)
+1. Users can create a event (new/create)
+1. Users can view one event (show)
+1. Users can delete a event (destroy)
+1. Users can edit a event (edit/update)
 
-Once we have this single Review resource build, we can move onto making an associated Comment resource.
+Once we have this single Event resource build, we can move onto making an associated Comment resource.
 
-1. Users can comment on reviews (comments#create)
+1. Users can comment on events (comments#create)
 1. Users can delete comments (comments#destroy)
+1. Users can rsvp to events (rsvps#create)
+1. Users can cancel their rsvp (rsvps#destroy)
 
-As we finish and test user stories we'll be committing to github 🐙.
+As we finish our user stories we'll be committing to github 🐙.
 
-# Getting Started - Node.JS and `npm`
+# Getting Started - Cloud9
+
+(Ignore this section if you are installing the development environment on your own computer)
 
 Now that we have some user stories, let's initialize an Express.js project so we can start on the first user story in the next chapter of this tutorial.
 
-We're gonna jump right in to starting the new review and provide more context as new topics and concepts come up.
+If you are using Cloud9
+
+1. Select "Create a New Workspace"
+1. Name your project 'make-parties'
+1. At the bottom select a HTML5 template
+1. Delete the hello-world file.
+1. You are good to go!
+
+# Getting Started - Setting up your Comptuer
+
+(Ignore this section if you are using Cloud9)
 
 For reference for the rest of this chapter you can look at [ExpressJS's Getting Started](https://expressjs.com/en/starter/installing.html) docs
 
-Open your computer's terminal and then...
-
-# Install Homebrew
+Open your computer's terminal and then install Homebrew.
 
 If you don't already have Homebrew installed, Mac's package manager, install that first and then install NodeJS. `npm` NodeJS's package manager is installed automatically when you install node, so we'll be able to install node modules from our commandline once we install node.
 
 ```bash
 $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 $ brew install node
+$ mkdir make-parties
+$ cd make-parties
 ```
+
+Now that we have Node installed (and therefore have `npm`), now we can use npm to initialize a Node project using the command `npm init` which means "npm initialize".
+
+Make a new directory called 'make-parties', then navigate into that directory, and finally initialized a new npm project in that directory.
+
+# Starting a Node.js & Express.js Project
+
+Use the command `npm init` ("npm initialize") to kick off a node project. This command will prompt you to define the configuration options that will be recorded in a file called `package.json`. Just hit enter for each option to select the default choice.
 
 > [info]
 > Whenever you see the `$` in a command, that means it should be called in your computer's terminal. Remember: Don't include the `$` in your command.
 
-# Starting a Node.js & Express.js Project
-
-Now that we have Node installed (and therefore have `npm`), now we can use npm to initialize a Node project using the command `npm init` which means "npm initialize".
-
-Make a new directory called 'rotten-potatoes', then navigate into that directory, and finally initialized a new npm project in that directory. The `npm init` function will prompt you to define the configuration options that will be recorded in a file called `package.json`. Just hit enter for each option to select the default choice.
-
 ```bash
-$ mkdir rotten-potatoes
-$ cd rotten-potatoes
 $ npm init
 # (hit enter for each option it asks for to select the default choice)
 ```
@@ -77,7 +98,14 @@ Now if you open your project in Atom, you'll see the `package.json` which record
 
 # Adding Express.js
 
-Now we need to add just a "Hello World" rendered with Express.js and then add the template engine we'll be using called [Handlebars](https://handlebarsjs.com/). Express.js is template engine-agnostic, meaning we could use all sorts of templating engines. We're going to use Handlebars so we get two key features: 1) a layout template, which will make organizing our templates easier, and 2) we'll actually write HTML—some templating engines you write in a custom version of html to simplify it but we want to practice writing real HTML.
+Now we need to add Express.js.
+
+> [info]
+> Express.js is a web framework. Node.js is your server. Express is a structure that makes it easy to use node to handle web requests through HTTP, and then to add other libraries called **middleware** to do other common website patterns like render HTML, accept form data, serve images and other static assets, and everything else websites can do. With Express as a base, you can build literally anything in the internet from Google to Uber.
+
+Lets start by just getting Express to say "Hello World!". Then we'll add a template engine called [Handlebars](https://handlebarsjs.com/) so Express can render HTML.
+
+Express.js is template engine-agnostic, meaning we could use all sorts of templating engines. We're going to use Handlebars so we get two key features: 1) a layout template, which will make organizing our templates easier, and 2) we'll actually write HTML—some templating engines you write in a custom version of html to simplify it but we want to practice writing real HTML.
 
 Our main file of our whole application we'll call `app.js`
 
@@ -93,7 +121,8 @@ $ touch app.js
 Now your project should have two files and a folder: `app.js`, `package.json`, and `node_modules`.
 
 > [action]
-> Now open your project's code base using the Atom text editor by typing:
+> (If your on Cloud9 ignore this step)
+> Now if you are on your computer, open your project's code base using the Atom text editor by typing:
 ```bash
 $ atom .
 ```
@@ -109,12 +138,24 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.listen(3000, () => {
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
   console.log('App listening on port 3000!')
 })
 ```
 
-At this point, we could run our project with `node app.js` and we would see "Hello World". Remember that we still haven't added a template engine yet! We are just sending text back to the browser.
+Now run your project
+
+```
+$ node app.js
+```
+
+If you are on Cloud9 select Preview > Preview Running Application to open a browser panel.
+
+If you are on your computer, point your browser to `http://localhost:3000`.
+
+Remember that we still haven't added a template engine yet. We are just sending text back to the browser.
 
 # Install nodemon and launch your server
 
