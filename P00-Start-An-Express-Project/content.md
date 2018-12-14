@@ -61,7 +61,7 @@ If you are using Cloud9
 1. Delete the hello-world file.
 1. You are good to go!
 
-# Getting Started - Setting up your Comptuer
+# Getting Started - Setting up your Computer
 
 (Ignore this section if you are using Cloud9)
 
@@ -256,7 +256,7 @@ $ git add .
 $ git commit -m 'init'
 ```
 
-Now go to github and create a public repository called `Rotten-Potatoes-Tutorial`, and now associate it as a remote for your local git project and then push to it.
+Now go to github and create a public repository called `make-parties`, and now associate it as a remote for your local git project and then push to it.
 
 ```bash
 $ git remote add origin GITHUB-REPO-URL

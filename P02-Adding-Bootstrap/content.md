@@ -122,8 +122,8 @@ Next we'll add some Bootstrap Card enhanced html inside:
       <h5 class="card-title">{{this.title}}</h5>
       <p class="card-text">{{this.desc}}</p>
       <div class="text-right">
-        <a href="/events/{{this.id}}/rsvps/new" class="btn btn-info">Rsvp</a>
-        <a href="/events/{{this.id}}" class="btn btn-primary">View</a>
+        <a href="#" class="btn btn-info">Rsvp</a>
+        <a href="#" class="btn btn-primary">View</a>
       </div>
     </div>
   </div>
