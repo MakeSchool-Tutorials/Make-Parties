@@ -196,6 +196,25 @@ module.exports = {
 
 ```
 
+We'll also need to update the Rsvp and Event models to define the has many and belongs to association:
+
+```js
+// db/models/rsvp.js
+...
+  Rsvp.associate = function(models) {
+    Rsvp.belongsTo(models.Event); // EventId
+  };
+```
+
+```js
+// db/models/event.js
+...
+  Event.associate = function(models) {
+    Event.hasMany(models.Rsvp);
+  };
+```
+
+
 # Now Setting the EventId
 
 Now we need to make sure the `EventId` attribute is set upon creation of an rsvp. We'll do this by updating the `req.body` object before creating the rsvp.

@@ -150,19 +150,11 @@ You can pick whichever you like, but for these instructions we'll use the "flatl
 
 Now you should see that all the bootstrap styles are updated to follow the theme that you chose.
 
-# Initialize, Commit, and Push
-
-Now that you have a basic initialized Express.js project, let's commit to github.
+# Let's Commit and Push
 
 ```bash
-$ git init
 $ git add .
-$ git commit -m 'init'
-```
-
-Now go to github and create a public repository called `Rotten-Potatoes-Tutorial`, and now associate it as a remote for your local git project and then push to it.
-
-```bash
-$ git remote add origin GITHUB-REPO-URL
-$ git push origin master -u
+$ git commit -m 'added createdAt, footer, and bootstrap theme'
+$ git push
+$ git push heroku master
 ```
