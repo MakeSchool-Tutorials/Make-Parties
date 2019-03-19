@@ -120,6 +120,7 @@ $ touch app.js
 
 Now your project should have two files and a folder: `app.js`, `package.json`, and `node_modules`.
 
+
 > [action]
 > (If your on Cloud9 ignore this step)
 > Now if you are on your computer, open your project's code base using the Atom text editor by typing:
@@ -127,6 +128,7 @@ Now your project should have two files and a folder: `app.js`, `package.json`, a
 $ atom .
 ```
 >
+
 
 And let's add some standard Express.js code to `app.js` to show a hello world.
 
