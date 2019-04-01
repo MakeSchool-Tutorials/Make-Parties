@@ -3,20 +3,30 @@ title: "Making A Plan & Starting an Express.js Project"
 slug: start-an-express-project
 ---
 
-You might know the website [EventBrite](https://eventbrite.com). It is a site where people can find great events to attend. In this tutorial you are going to build Make Parties - your very own event website.
+You might know the website [EventBrite](https://eventbrite.com). It is a site where people can find great events to attend. In this tutorial you are going to build **Make Parties** - your very own event website.
 
-![finished example](finished-example.png)
+![finished example](assets/finished-example.png)
+
+# Prerequisites
 
 Before starting this tutorial you should be familiar with the following topics:
 
-* HTML/CSS & Bootstrap
-* JavaScript Fundamentals
+- HTML/CSS & Bootstrap
+- JavaScript Fundamentals
 
-By completing this tutorial you will gain exposure to Node.js and Express.js as well as master the internet-wide paradigms of RESTful and Resourceful routing. You will be Creating, Reading, Updating, and Deleting (CRUD) a single `Event` resource, create and delete two other resources `Rsvp` and `Comment`, and associate these resources together. You will also learn how to use a SQL document-based database with Express.js using the Object Document Mapper Sequelize.
+# Learning Outcomes
 
-Before we get started, let's make a plan for what **User Stories** we're going to build. Then we'll jump in and start Express.js app and add a templating engine.
+By the end of this tutorial, you should be able to...
+
+1. Practice using Node.js and Express.js
+1. Implement internet-wide paradigms of RESTful and Resourceful routing.
+1. Creating, Reading, Updating, and Deleting (CRUD) a single `Event` resource
+1. Create and delete two other resources (`Rsvp` and `Comment`), and associate these resources together.
+1. Use a SQL document-based database with Express.js using the Object Document Mapper Sequelize.
 
 # How to Plan a Coding Project: User Stories
+
+Before we get started, let's make a plan for what **User Stories** we're going to build. Then we'll jump in and start Express.js app and add a templating engine.
 
 Software development these days is organized into **Agile Sprints** that are usually two weeks long. You'll notice evidence of this if you ever update your apps and read the update text. Sometimes it just says:
 
@@ -40,58 +50,79 @@ So the user stories we can have for this event app will be as follows:
 
 Once we have this single Event resource build, we can move onto making an associated Comment resource.
 
-1. Users can comment on events (comments#create)
-1. Users can delete comments (comments#destroy)
-1. Users can rsvp to events (rsvps#create)
-1. Users can cancel their rsvp (rsvps#destroy)
+1. Users can comment on events (/comments/create)
+1. Users can delete comments (/comments/destroy)
+1. Users can rsvp to events (/rsvps/create)
+1. Users can cancel their rsvp (/rsvps/destroy)
 
-As we finish our user stories we'll be committing to github 🐙.
+As we finish our user stories we'll be committing to GitHub 🐙.
 
 # Getting Started - Cloud9
 
-(Ignore this section if you are installing the development environment on your own computer)
+**(Ignore this section if you are installing the development environment on your own computer)**
 
 Now that we have some user stories, let's initialize an Express.js project so we can start on the first user story in the next chapter of this tutorial.
 
-If you are using Cloud9
-
-1. Select "Create a New Workspace"
-1. Name your project 'make-parties'
-1. At the bottom select a HTML5 template
-1. Delete the hello-world file.
-1. You are good to go!
+> [action]
+>
+> If you are using Cloud9
+>
+> 1. Select "Create a New Workspace"
+> 1. Name your project 'make-parties'
+> 1. At the bottom select a HTML5 template
+> 1. Delete the hello-world file.
+> 1. You are good to go!
 
 # Getting Started - Setting up your Computer
 
-(Ignore this section if you are using Cloud9)
+**(Ignore this section if you are using Cloud9)**
 
-For reference for the rest of this chapter you can look at [ExpressJS's Getting Started](https://expressjs.com/en/starter/installing.html) docs
-
-Open your computer's terminal and then install Homebrew.
-
-If you don't already have Homebrew installed, Mac's package manager, install that first and then install NodeJS. `npm` NodeJS's package manager is installed automatically when you install node, so we'll be able to install node modules from our commandline once we install node.
-
-```bash
-$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-$ brew install node
-$ mkdir make-parties
-$ cd make-parties
-```
-
-Now that we have Node installed (and therefore have `npm`), now we can use npm to initialize a Node project using the command `npm init` which means "npm initialize".
-
-Make a new directory called 'make-parties', then navigate into that directory, and finally initialized a new npm project in that directory.
-
-# Starting a Node.js & Express.js Project
-
-Use the command `npm init` ("npm initialize") to kick off a node project. This command will prompt you to define the configuration options that will be recorded in a file called `package.json`. Just hit enter for each option to select the default choice.
+For reference for the rest of this chapter you can look at [ExpressJS's Getting Started](https://expressjs.com/en/starter/installing.html) docs for help with getting started.
 
 > [info]
 > Whenever you see the `$` in a command, that means it should be called in your computer's terminal. Remember: Don't include the `$` in your command.
 
+First things first, we need a tool to help us install things like packages and libraries. [Homebrew]((https://brew.sh/)) is Mac's package manager, so let's install that first!
+
+> [action]
+>
+> Open your computer's terminal and then install Homebrew:
+>
+```bash
+$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+Cool, now let's get our environment set up. `npm`, NodeJS's package manager, is installed automatically when you install node, so we'll be able to install node modules from our command line once we install node.
+
+> [action]
+>
+> install NodeJS:
+>
+```bash
+$ brew install node
+```
+
+Now that we have Node installed (and therefore have `npm`), Let's set up our working directory where we'll build our project.
+
+> [action]
+>
+> Make a new directory called `make-parties`, then navigate into that directory
+>
+```bash
+$ mkdir make-parties
+$ cd make-parties
+```
+
+# Starting a Node.js & Express.js Project
+
+Use the command `npm init` ("npm initialize") to kick off a node project. This command will prompt you to define the configuration options that will be recorded in a file called `package.json`. _Just hit enter for each option to select the default choice._
+
+> [action]
+>
+> Run `npm init` to kick off the project:
+>
 ```bash
 $ npm init
-# (hit enter for each option it asks for to select the default choice)
 ```
 
 Now if you open your project in Atom, you'll see the `package.json` which records the npm configuration you define upon initialization of the project.
@@ -105,72 +136,89 @@ Now we need to add Express.js.
 
 Lets start by just getting Express to say "Hello World!". Then we'll add a template engine called [Handlebars](https://handlebarsjs.com/) so Express can render HTML.
 
-Express.js is template engine-agnostic, meaning we could use all sorts of templating engines. We're going to use Handlebars so we get two key features: 1) a layout template, which will make organizing our templates easier, and 2) we'll actually write HTML—some templating engines you write in a custom version of html to simplify it but we want to practice writing real HTML.
+Express.js is template engine-agnostic, meaning we could use all sorts of templating engines. We're going to use Handlebars so we get two key features:
+
+1. A layout template, which will make organizing our templates easier
+1. We'll actually write HTML. Some templating engines you write in a custom version of html to simplify it but we want to practice writing real HTML.
 
 Our main file of our whole application we'll call `app.js`
 
 > [action]
-> First install Express.js and then create the main file using the "touch" command.
+> First install Express.js and then create the main file using the `touch` command.
 >
 ```bash
 $ npm install express --save
 $ touch app.js
 ```
->
 
 Now your project should have two files and a folder: `app.js`, `package.json`, and `node_modules`.
 
-
 > [action]
-> (If your on Cloud9 ignore this step)
+>
+> **(If your on Cloud9 ignore this step)**
 > Now if you are on your computer, open your project's code base using the Atom text editor by typing:
+>
 ```bash
 $ atom .
 ```
+
+Let's add some standard Express.js code to `app.js` to show a hello world:
+
+> [action]
 >
-
-
-And let's add some standard Express.js code to `app.js` to show a hello world.
-
+> Add the following to `app.js`:
+>
 ```js
+// Initialize express
 const express = require('express')
 const app = express()
-
+>
+// Tell our app to send the "hello world" message to our home page
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
-
+>
+// Choose a port to listen on
 const port = process.env.PORT || 3000;
-
+>
+// Tell the app what port to listen on
 app.listen(port, () => {
   console.log('App listening on port 3000!')
 })
 ```
 
-Now run your project
+Now run your project!
 
-```
+> [action]
+>
+> Run the following command to get your project up and running:
+>
+```bash
 $ node app.js
 ```
+>
+> **If you are on Cloud9:** select Preview > Preview Running Application to open a browser panel.
+>
+> **If you are on your computer:** point your browser to `http://localhost:3000`.
 
-If you are on Cloud9 select Preview > Preview Running Application to open a browser panel.
-
-If you are on your computer, point your browser to `http://localhost:3000`.
-
-Remember that we still haven't added a template engine yet. We are just sending text back to the browser.
+Remember that we still haven't added a template engine yet. We are just sending text back to the browser, but you should see an empty page except for the the text "Hello World!"
 
 # Install nodemon and launch your server
 
-Let's install `nodemon` if you haven't already. Make sure you've installed `nodemon` and run your server by running `nodemon`. [Nodemon](https://nodemon.io/) just helps us by restarting our server every time we change our code.
+Let's install `nodemon` if you haven't already. [Nodemon](https://nodemon.io/) just helps us by restarting our server every time we change our code.
 
+> [action]
+>
+> Install and run `nodemon`:
+>
 ```bash
 $ npm install nodemon -g
 $ nodemon app.js
 ```
 
-In your terminal you should see "Portfolio App listening on port 3000!" output in your terminal from the `console.log` inside of `app.listen(3000 ...)`. Now on your browser at `http://localhost:3000` you should see "Hello World".
+In your terminal, you should see `App listening on port 3000!` as an output. How did this get here?
 
-Hello there code!
+From the `console.log` inside of `app.listen(3000 ...)`! Make sure to refresh your browser (if you're on `localhost`) to make sure that the text is still displaying and everything is working properly.
 
 # Add Handlebars.js as a Templating Engine
 
@@ -179,28 +227,37 @@ Now, we are going to need to render HTML for our project, so we have to add a **
 Let's add our templating engine Handlebars.js so our Express.js server can render templates. This is called _server-side HTML templates_.
 
 > [action]
-> Instal Handlebars.js to your project using the `express-handlebars` node module.
-
+> Install Handlebars.js to your project using the `express-handlebars` node module.
+>
 ```bash
 $ npm install express-handlebars --save
 ```
 
-Now that we've installed the package, we must require it or **initialize** it in your app and also, let's set the `defaultLayout` to `main`.
+Now that we've installed the package, we must require it or **initialize** it in your app:
 
+> [action]
+>
+> Update `app.js` to include the following after the `const app = express()` line:
+>
 ```js
-// app.js
+// require handlebars
 var exphbs = require('express-handlebars');
-
+>
+// Use "main" as our default layout
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+// Use handlebars to render
 app.set('view engine', 'handlebars');
 ```
 
-> [action]
-> Now extend your **root route** ('/') to render `home.handlebars`.
+Now let's render a handlebars home page!
 
+> [action]
+> Extend your **root route** ('/') to render `home.handlebars`.
+>
 ```js
 // app.js
-
+>
+// Render the "home" layout for the main page and send the following msg
 app.get('/', (req, res) => {
   res.render('home', { msg: 'Handlebars are Cool!' });
 })
@@ -211,8 +268,10 @@ Refresh your browser now and read the error you get carefully. This error tells 
 > [info]
 > It is useful to try to predict what error you might get as you are coding, and see if you get the error you expected. Errors can be a great way to check your work as you go and not go too far before checking your work.
 
+<!-- -->
+
 > [action]
-> Create the `views`, `layouts` folders and `main.handlebars` and `home.handlebars` files.
+> Create the `views`, `layouts` folders and `main.handlebars` and file.
 
 ```bash
 $ mkdir views
@@ -224,29 +283,42 @@ So now we have our **views** folder setup with a **layout template** called `mai
 
 Now we'll add some boilerplate code to the `main.handlebars` layout template. Remember that we used Handlebars because it has a **Layout Template**. A **layout template** is a super-template that all other templates will inherit from. This is like a "super-template" that all other templates are embedded in. Having a layout template means we can put things that go on *every* page in just one file of code. These templates will be threaded in right at the `{{{body}}}`.
 
+> [action]
+>
+> Add the following to `views/layouts/main.handlebars`
+>
 ```html
 <!-- views/layouts/main.handlebars -->
 <!doctype html>
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Rotten Potatoes</title>
+  <title>Make Parties</title>
 </head>
 <body>
-
+>
   {{{body}}}
-
+>
 </body>
 </html>
 ```
 
-Now we can make our `views/home.handlebars` template to render
+Now we can make our `views/home.handlebars` template, which will use `main.handlebars` as a boilerplate, but what we write in `home.handlebars` will render in the `{{{body}}}` portion of `main.handlebars`:
+
+> [action]
+>
+> Create the `views/home.handlebars` file and then add the following to it:
+>
 ```html
 <!-- home.handlebars -->
 <h1>{{msg}}</h1>
 ```
 
-Now when you visit `localhost:3000` you now should see "Handlebars are Cool!" inside an `h1` tag.
+# Product So far
+
+Now when you visit `localhost:3000` you should now see "Handlebars are Cool!" inside an `h1` tag:
+
+![handlebars are cool](assets/handlebars-are-cool.png)
 
 # Initialize, Commit, and Push
 
@@ -264,3 +336,5 @@ Now go to github and create a public repository called `make-parties`, and now a
 $ git remote add origin GITHUB-REPO-URL
 $ git push origin master -u
 ```
+
+We'll be doing this at the end of every chapter to make sure we're saving our progress as we go along!
