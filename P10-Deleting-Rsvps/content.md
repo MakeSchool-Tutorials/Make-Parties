@@ -122,3 +122,13 @@ So now we've completed all our user stories
 1. Users can delete rsvps (rsvps/destroy)
 
 You used **Resource Based Development** and **Resourceful Routing** to build a event based app.
+
+# Stretch Challenges
+
+The next two chapters are all stretch challenges for those who want to dive deeper into the following areas:
+
+- Improving the stylistic areas of the site
+- Refactoring the code to be more efficient
+- Adding additional functionality (such as comments)
+
+If any of those sound interesting to you, check them out! We highly encourage it!

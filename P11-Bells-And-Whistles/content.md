@@ -7,40 +7,32 @@ Now there are a few more things we can do to tighten up our website and make it 
 
 # Displaying "Created At" Time
 
-Let's display a "timestamp" for when a Review was created that looks like this: "Created on Nov 3, 2018".
+Let's display a timestamp of when the event was created. Normally this would require some middleware to accomplish our needs, but if you look at the `migration` files, you'll see that all of our models come with a `createdAt` definition by default! Now we just need to display them.
 
-First we have to update our model to track when documetns are created and updated. We is so common, that there is an established convention in Mongoose called "timestamps" to accomplish it. We just have to add the additional option of `{ timestamps: true }` to the schema of our model and then all documents will have a `createdAt` and `updatedAt` Date fields added and set correctly by default.
-
-```js
-const Review = mongoose.model('Review', {
-  ...
-}, {
-  timestamps: true
-});
-```
-
-Now we can display that `createdAt` timestamp in our html.
-
-> [action]
+> [challenge]
+>
+> Update `views/events-show.handlebars` to include the `createdAt` property:
 >
 ```html
-<!-- views/reviews-index.handlebars -->
-
-<h1>Reviews</h1>
-
-<div class="row">
-  {{#each reviews}}
-    <div class="col-sm-3">
-      <h2><a href="/reviews/{{this._id}}">{{this.title}}</a></h2>
-      <small>{{this.movieTitle}}</small>
-      <small class="text-right text-muted">{{this.createdAt}}</small>
+<!-- views/events-show.handlebars -->
+>
+<div class="row mt-4">
+    <div class="col-lg-6">
+        <img class="img-fluid w-100 rounded mb-3" src="{{event.imgUrl}}" alt="Card image cap">
+[bold]        <small class="text-muted">Created on: {{event.createdAt}}</small>[/bold]
+        <h3>{{event.title}}</h3>
+        <div class="lead">{{event.desc}}</div>
+        <div class="text-right">
+            <a href="/events/{{event.id}}/edit">Edit</a>
+        </div>
     </div>
-  {{/each}}
+>
+...
+>
 </div>
 ```
-> Now create a new review and see what is displayed.
 
-Uh-oh - what you see there is called a Unix timestamp.
+Refresh your browser and navigate to an event page. Seems a bit long for a date and time, doesn't it? What you see there is called a Unix timestamp.
 
 ```
 Mon Nov 26 2018 12:57:54 GMT-0800 (Pacific Standard Time)
@@ -48,83 +40,82 @@ Mon Nov 26 2018 12:57:54 GMT-0800 (Pacific Standard Time)
 
 It technically says the date and time when the review was created, but it isn't very readable for humans! We could parse it manually, but let's use a neat and very common js library called [moment](https://momentjs.com/) to parse that time into something more readable.
 
-Buuuuuuuuut, handlebars is a strictly **logicless** templating engine, meaning that it does not allow any logical functions to be performed in the templates. Ever.
-
-Thankfully someone wrote a helper module that wraps moment in handlebars, allowing you to call a `moment()` sort of helper inside of a handlebars template.
-
-We're going to install `helper-moment` then make it available in our project using the `app.locals` method that sets local variables across your whole application. Anything in `app.locals` will be available in your controllers and templates.
-
-> [action]
-> Install helper-moment
+> [challenge]
+> Install moment
 ```bash
-$ npm i helper-moment --save
+$ npm install moment --save
 ```
-> Now In your middleware section of your `app.js` file add moment and put it into a variable called `app.locals.momemt`.
+>
+> Now update the `/show` route in `controllers/events.js` to format the `createdAt` date into something we can read:
+>
 ```js
-// app.js
 ...
-
-const moment = require('helper-moment');
-app.locals.moment = moment;
-
+>
+app.get('/events/:id', (req, res) => {
+    models.Event.findByPk(req.params.id, { include: [{ model: models.Rsvp }] }).then(event => {
+        let createdAt = event.createdAt;
+        createdAt = moment(createdAt).format('MMMM Do YYYY, h:mm:ss a');
+        event.createdAtFormatted = createdAt;
+        res.render('events-show', { event: event });
+    }).catch((err) => {
+        console.log(err.message);
+    })
+});
+>
 ...
 ```
 
-Now we can use helper-moment to parse the date.
+Reload your browser and check the timestamp. Doesn't that look so much better?
 
-```html
-<small class="text-right text-muted">{{moment this.createdAt 'MM DD YYYY'}}</small>
-```
-
-> [action]
-> Now use the [moment documentation](https://momentjs.com/) to tweek the **format string** until you are happy with how the text displays.
+> [info]
+> Want it to display differently? Use the [moment documentation](https://momentjs.com/) to tweek the **format string** until you are happy with how the text displays.
 
 # Adding a Footer
 
-Now let's add a footer (Brought to you by mdbootstrap.com). Add the following code after the `{{{body}}}` tag but before the `</body>` tag or any `<script>` tags.
+Now let's add a footer (Brought to you by mdbootstrap.com).
 
+> [challenge]
+>
+> Add the following code after the `{{{body}}}` tag, but before the `</body>` tag or any `<script>` tags in `views/layouts/main.handlebars`.
+>
 ```html
 <!-- main.handlebars -->
 ...
-
+>
 <!-- Footer -->
 <footer class="page-footer font-small blue pt-4">
-  <div class="container-fluid text-center text-md-left">
-    <div class="row">
-      <div class="col-md-6 mt-md-0 mt-3">
-        <h5 class="text-uppercase">Footer Content</h5>
-        <p>Here you can use rows and columns here to organize your footer content.</p>
-      </div>
-      <hr class="clearfix w-100 d-md-none pb-3">
-      <div class="col-md-3 mb-md-0 mb-3">
-          <h5 class="text-uppercase">Links</h5>
-          <ul class="list-unstyled">
-            <li><a href="#!">Link 1</a></li>
-            <li><a href="#!">Link 2</a></li>
-            <li><a href="#!">Link 3</a></li>
-            <li><a href="#!">Link 4</a></li>
-          </ul>
-        </div>
-        <div class="col-md-3 mb-md-0 mb-3">
-          <h5 class="text-uppercase">Links</h5>
-          <ul class="list-unstyled">
-            <li><a href="#!">Link 1</a></li>
-            <li><a href="#!">Link 2</a></li>
-            <li><a href="#!">Link 3</a></li>
-            <li><a href="#!">Link 4</a></li>
-          </ul>
-        </div>
-    </div>
+  <div class="container-fluid text-center">
+     <div class="row">
+     <hr class="clearfix w-100 d-md-none pb-3">
+     <div class="col-md-6 mb-md-0 mb-3">
+         <h5 class="text-uppercase">Links</h5>
+         <ul class="list-unstyled">
+             <li><a href="#!">Link 1</a></li>
+             <li><a href="#!">Link 2</a></li>
+             <li><a href="#!">Link 3</a></li>
+             <li><a href="#!">Link 4</a></li>
+         </ul>
+     </div>
+     <div class="col-md-6 mb-md-0 mb-3">
+         <h5 class="text-uppercase">Links</h5>
+         <ul class="list-unstyled">
+             <li><a href="#!">Link 1</a></li>
+             <li><a href="#!">Link 2</a></li>
+             <li><a href="#!">Link 3</a></li>
+             <li><a href="#!">Link 4</a></li>
+         </ul>
+     </div>
+     </div>
   </div>
   <div class="footer-copyright text-center py-3">© 2018 Copyright:
-    <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+     <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
   </div>
 </footer>
-
+>
 ...
 ```
 
-Beautiful. Make any visual changes you like.
+Beautiful! Make any visual changes you like.
 
 
 # Adding a Bootstrap Theme
@@ -133,24 +124,37 @@ Now if we want to customize our style a little bit, we can add a free bootstrap 
 
 You can pick whichever you like, but for these instructions we'll use the "flatly" theme.
 
-> [action]
-> Go to the flatly theme and select the download the boostrap.min.css. [link](https://bootswatch.com/4/flatly/bootstrap.min.css)
+> [challenge]
+> Go to [Bootswatch](https://bootswatch.com/) and select a theme from the `Themes` dropdown
 >
-> Save that code into a file in the location: public/vendor/flatly.min.css
+> Select the dropdown of the name of the style you selected. For example, if you like the `Flatly` style, you should see a `Flatly` dropdown as the last nav bar item on the left
 >
-> Now add a link to that theme in your `<head>` tag. Make sure that this theme comes AFTER your link to bootstrap itself. Otherwise it won't work.
-
+> Select the `bootstrap.min.css` option in the dropdown
+> Copy the URL into the `<head>` tag in `views/layouts/main.handlebars` to include the style you want. Make sure that this theme comes AFTER your link to bootstrap itself. Otherwise it won't work.
+>
 ```html
 <head>
   ...
-
-  <link rel="stylesheet" href="/vendor/flatly.min.css">
+>
+  <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
 </head>
 ```
 
-Now you should see that all the bootstrap styles are updated to follow the theme that you chose.
+Now you can mess around with the CSS classes you have previously applied to achieve the look that you want!.
 
-# Let's Commit and Push
+# Product So Far
+
+Yours may look different depending on the styles/formatting you chose, but it should look similar to this now:
+
+**Home Page**
+
+![styled-home](assets/styled-home.png)
+
+**Event Page**
+
+![styled-event](assets/styled-event.png)
+
+# Now Commit
 
 ```bash
 $ git add .
