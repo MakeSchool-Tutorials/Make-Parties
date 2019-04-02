@@ -212,9 +212,10 @@ Cool, Postgres installed, now we gotta work on Sequelize:
 
 > [action]
 >
-> Follow the "Quick Start: Getting Connected guide" in the [Sequelize-It](https://ajbraus.github.io/sequelize-it/#/?id=quick-start-getting-connected) documentation.
+> Follow the "Quick Start: Getting Connected" section in the [Sequelize-It](https://ajbraus.github.io/sequelize-it/#/?id=quick-start-getting-connected) documentation.
 >
-> **IMPORTANT NOTE:** Make sure that when you do the `npm install` commands, you use a `-g` for the install so that it gets globally installed, otherwise you'll run into issues.
+> **IMPORTANT NOTE 1:** It's very important to follow all 8 steps in the Quick Start, especially in terms of getting the `config.json` file set up correctly. If you run into `ECONNREFUSED` or `ETIMEDOUT` errors, go back to the guide and make sure you followed all 8 steps correctly.
+> **IMPORTANT NOTE 2:** Make sure that when you do the `npm install` commands, you use a `-g` for the install so that it gets globally installed, otherwise you'll run into issues.
 >
 > Example: `npm install -g sequelize sequelize-cli pg pg-hstore --save`
 
