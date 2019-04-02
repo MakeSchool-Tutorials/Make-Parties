@@ -5,6 +5,15 @@ slug: push-to-heroku
 
 Time to ship some code! Since we've built and styled our Make Parties app, let's show it to the world by putting it online. We'll use a service called [Heroku](https://www.heroku.com) that is free, but it does require a **credit card** to be on file.
 
+## Resources
+
+It can be fairly common to get Heroku set up. If you run into trouble, here are some resources to help you along the way:
+
+- [Heroku Error Codes](https://devcenter.heroku.com/articles/error-codes)
+- [Running Migrations on Heroku Using Sequelize](https://sequelize.readthedocs.io/en/1.7.0/articles/heroku/#running-migrations)
+
+And don't forget the best resource: Googling your error!
+
 # Sign Up For and Install Heroku
 
 > [action]
@@ -162,7 +171,9 @@ We will still have problems though because we need to update our `config.json`.
  "production": {
    "use_env_variable": "DATABASE_URL",
    "dialect": "postgres",
-   "operatorsAliases": "Sequelize.Op"
+   "dialectOptions": {
+      "ssl": true
+    }
  }
 ```
 
@@ -176,8 +187,34 @@ We also need to add a Heroku config variable to mark that we are in production:
 $ heroku config:set NODE_ENV=production
 ```
 
+Finally, we need run our migrations onto Heroku as well!
+
+> [action]
+>
+> Run the following commands for the migration:
+>
+```bash
+$ heroku run bash
+$ sequelize -m # this just makes sure sequelize is installed
+$ sequelize db:migrate
+```
+
 Ok now our database should connect!
 
+> [action]
+>
+> Push up to Heroku:
+>
+```bash
+$ git add .
+$ git commit -m "pushing heroku config info"
+$ git push heroku master
+```
+
 # WooHoo!
+
+If everything went well, you should be able to navigate to your Heroku site and see a blank version of our app:
+
+![heroku-live](assets/heroku-live.png)
 
 Awwww yeah - you did it! You made your first RESTful and Resourceful app using Node.js, Express.js, and PostgreSQL! V1 is done and shipped!
