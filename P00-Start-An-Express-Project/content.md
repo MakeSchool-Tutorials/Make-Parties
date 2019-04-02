@@ -18,11 +18,11 @@ Before starting this tutorial you should be familiar with the following topics:
 
 By the end of this tutorial, you should be able to...
 
-1. Practice using Node.js and Express.js
-1. Implement internet-wide paradigms of RESTful and Resourceful routing.
+1. Build a web app using Node.js and Handlebars
+1. Implement internet-wide paradigms of RESTful and Resourceful routing
 1. Creating, Reading, Updating, and Deleting (CRUD) a single `Event` resource
-1. Create and delete two other resources (`Rsvp` and `Comment`), and associate these resources together.
-1. Use a SQL document-based database with Express.js using the Object Document Mapper Sequelize.
+1. Create and delete an additional resource (`Rsvp`), and associate it to another resource
+1. Use a SQL document-based database with an Object Document Mapper (Sequelize).
 
 # How to Plan a Coding Project: User Stories
 
@@ -45,14 +45,12 @@ So the user stories we can have for this event app will be as follows:
 1. Users can view all events (index)
 1. Users can create a event (new/create)
 1. Users can view one event (show)
-1. Users can delete a event (destroy)
 1. Users can edit a event (edit/update)
+1. Users can delete a event (destroy)
 
-Once we have this single Event resource build, we can move onto making an associated Comment resource.
+Once we have this single Event resource build, we can move onto making an associated RSVP resource.
 
-1. Users can comment on events (/comments/create)
-1. Users can delete comments (/comments/destroy)
-1. Users can rsvp to events (/rsvps/create)
+1. Users can rsvp to events (/rsvps/create, /rsvps/new)
 1. Users can cancel their rsvp (/rsvps/destroy)
 
 As we finish our user stories we'll be committing to GitHub 🐙.

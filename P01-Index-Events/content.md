@@ -5,11 +5,13 @@ slug: index-events
 
 Following our **User Stories** we are going to define a single **Resource** in this app called an `Event`.
 
-1. Users can view all events (index)
+1. **Users can view all events (index)**
 1. Users can create a event (new/create)
 1. Users can view one event (show)
-1. Users can delete a event (destroy)
 1. Users can edit a event (edit/update)
+1. Users can delete a event (destroy)
+1. Users can rsvp to events (/rsvps/create, /rsvps/new)
+1. Users can cancel their rsvp (/rsvps/destroy)
 
 A **Resource** is an abstract object that we use to organize data, code, and the features of our app. For example, in a `User` resource we can keep track of logging in and out, email and passwords, and people's birthdays. In a blog, we might have an `Article` or `Post` resource where we would track the titles and bodies of articles and keep track of the code for publishing and sharing them.
 

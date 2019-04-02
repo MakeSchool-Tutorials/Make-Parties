@@ -3,6 +3,16 @@ title: "Adding Rsvps (Form)"
 slug: adding-rsvps
 ---
 
+Let's not forget about our **User Stories**
+
+1. ~~Users can view all events (index)~~
+1. ~~Users can create a event (new/create)~~
+1. ~~Users can view one event (show)~~
+1. ~~Users can edit a event (edit/update)~~
+1. ~~Users can delete a event (destroy)~~
+1. **Users can rsvp to events (/rsvps/create, /rsvps/new)**
+1. Users can cancel their rsvp (/rsvps/destroy)
+
 At this point you should have a functioning site that creates and saves Events to a database. This system manages a *single resource*, which we've called a 'Event'. In this section you will add a new resource which will represent Rsvps or reservations to events. We'll call this resource "Rsvps" because "reservations" is very long and annoying to type and can increase the chance of typos.
 
 Rsvps will be treated like Events. They will have a model that defines them, and they will have a table in the database.

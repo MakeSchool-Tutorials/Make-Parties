@@ -3,6 +3,14 @@ title: "Edit Route: Editing and Updating a Resource"
 slug: editing-a-event
 ---
 
+1. ~~Users can view all events (index)~~
+1. ~~Users can create a event (new/create)~~
+1. ~~Users can view one event (show)~~
+1. **Users can edit a event (edit/update)**
+1. Users can delete a event (destroy)
+1. Users can rsvp to events (/rsvps/create, /rsvps/new)
+1. Users can cancel their rsvp (/rsvps/destroy)
+
 Now we're checking off the seven **Resourceful Routes**. But we're not done until all of them are complete.
 
 | URL              | HTTP Verb | Action  |

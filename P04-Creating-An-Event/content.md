@@ -11,6 +11,14 @@ So now we have
 
 So now we just need our `Event` model to save to our database.
 
+1. ~~Users can view all events (index)~~
+1. **Users can create a event (new/create)**
+1. Users can view one event (show)
+1. Users can edit a event (edit/update)
+1. Users can delete a event (destroy)
+1. Users can rsvp to events (/rsvps/create, /rsvps/new)
+1. Users can cancel their rsvp (/rsvps/destroy)
+
 # Using Form Data to Create a Event
 
 So now let's use that form data to save a new event to our SQL database using our `Event` model. We'll use the method provided to us by Sequelize called `create()`. After we create the event, let's redirect to the root path to see our new event.

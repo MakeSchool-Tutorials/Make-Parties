@@ -3,6 +3,14 @@ title: "Deleting Comments"
 slug: deleting-rsvps
 ---
 
+1. ~~Users can view all events (index)~~
+1. ~~Users can create a event (new/create)~~
+1. ~~Users can view one event (show)~~
+1. ~~Users can edit a event (edit/update)~~
+1. ~~Users can delete a event (destroy)~~
+1. ~~Users can rsvp to events (/rsvps/create, /rsvps/new)~~
+1. **Users can cancel their rsvp (/rsvps/destroy)**
+
 Finally, since we are creating rsvps, we should also be able to delete them.
 
 Remember that currently we do not have authentication so we'll just be letting any user create and delete rsvps. If we developed this project for a real production use case, we would want to add authentication and only allow people to delete their own rsvps!

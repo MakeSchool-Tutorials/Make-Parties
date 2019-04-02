@@ -3,6 +3,14 @@ title: "Delete Route: Destroying a Resource"
 slug: deleting-a-event
 ---
 
+1. ~~Users can view all events (index)~~
+1. ~~Users can create a event (new/create)~~
+1. ~~Users can view one event (show)~~
+1. ~~Users can edit a event (edit/update)~~
+1. **Users can delete a event (destroy)**
+1. Users can rsvp to events (/rsvps/create, /rsvps/new)
+1. Users can cancel their rsvp (/rsvps/destroy)
+
 So we've come to the end of our RESTful and Resourceful routes. Only one to go: Destroy!
 
 | URL              | HTTP Verb | Action  |
