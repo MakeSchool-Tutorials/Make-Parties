@@ -131,6 +131,14 @@ So now we've completed all our user stories
 
 You used **Resource Based Development** and **Resourceful Routing** to build a event based app.
 
+# Feedback and Review - 2 minutes
+
+**We promise this won't take longer than 2 minutes!**
+
+Please take a moment to rate your understanding of learning outcomes from this tutorial, and how we can improve it via our [tutorial feedback form](https://forms.gle/gnEK8jAjRHb5cD5e6)
+
+This allows us to get feedback on how well the students are grasping the learning outcomes, and tells us where we can improve the tutorial experience.
+
 # Stretch Challenges
 
 The next two chapters are all stretch challenges for those who want to dive deeper into the following areas:

@@ -19,8 +19,8 @@ Before starting this tutorial you should be familiar with the following topics:
 By the end of this tutorial, you should be able to...
 
 1. Build a web app using Node.js and Handlebars
-1. Implement internet-wide paradigms of RESTful and Resourceful routing
-1. Creating, Reading, Updating, and Deleting (CRUD) a single `Event` resource
+1. Implement the internet-wide paradigms of RESTful and Resourceful routing
+1. Create, Read, Update, and Delete (CRUD) a single `Event` resource
 1. Create and delete an additional resource (`Rsvp`), and associate it to another resource
 1. Use a SQL document-based database with an Object Document Mapper (Sequelize).
 
