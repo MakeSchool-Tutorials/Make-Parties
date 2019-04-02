@@ -187,7 +187,19 @@ We also need to add a Heroku config variable to mark that we are in production:
 $ heroku config:set NODE_ENV=production
 ```
 
-Finally, we need run our migrations onto Heroku as well!
+Let's get our code onto Heroku now:
+
+> [action]
+>
+> Push up to Heroku:
+>
+```bash
+$ git add .
+$ git commit -m "pushing heroku config info"
+$ git push heroku master
+```
+
+Finally, we need run our migrations onto Heroku as well before anything will work properly!
 
 > [action]
 >
@@ -199,17 +211,7 @@ $ sequelize -m # this just makes sure sequelize is installed
 $ sequelize db:migrate
 ```
 
-Ok now our database should connect!
-
-> [action]
->
-> Push up to Heroku:
->
-```bash
-$ git add .
-$ git commit -m "pushing heroku config info"
-$ git push heroku master
-```
+Ok now our database should connect, and we can navigate around our Heroku site!
 
 # WooHoo!
 
