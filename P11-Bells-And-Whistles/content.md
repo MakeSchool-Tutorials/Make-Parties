@@ -9,7 +9,7 @@ Now there are a few more things we can do to tighten up our website and make it 
 
 Let's display a timestamp of when the event was created. Normally this would require some middleware to accomplish our needs, but if you look at the `migration` files, you'll see that all of our models come with a `createdAt` definition by default! Now we just need to display them.
 
-> [challenge]
+> [action]
 >
 > Update `views/events-show.handlebars` to include the `createdAt` property:
 >
@@ -40,7 +40,7 @@ Mon Nov 26 2018 12:57:54 GMT-0800 (Pacific Standard Time)
 
 It technically says the date and time when the review was created, but it isn't very readable for humans! We could parse it manually, but let's use a neat and very common js library called [moment](https://momentjs.com/) to parse that time into something more readable.
 
-> [challenge]
+> [action]
 > Install moment
 ```bash
 $ npm install moment --save
@@ -65,6 +65,21 @@ app.get('/events/:id', (req, res) => {
 ...
 ```
 
+Finally, let's use our new property:
+
+> [action]
+>
+> Update `views/events-show.handlebars` to include the `createdAt` property:
+>
+```html
+<!-- views/events-show.handlebars -->
+...
+>
+<small class="text-muted">Created on: {{event.createdAtFormatted}}</small>
+>
+...
+```
+
 Reload your browser and check the timestamp. Doesn't that look so much better?
 
 > [info]
@@ -74,7 +89,7 @@ Reload your browser and check the timestamp. Doesn't that look so much better?
 
 Now let's add a footer (Brought to you by mdbootstrap.com).
 
-> [challenge]
+> [action]
 >
 > Add the following code after the `{{{body}}}` tag, but before the `</body>` tag or any `<script>` tags in `views/layouts/main.handlebars`.
 >
@@ -124,7 +139,7 @@ Now if we want to customize our style a little bit, we can add a free bootstrap 
 
 You can pick whichever you like, but for these instructions we'll use the "flatly" theme.
 
-> [challenge]
+> [action]
 > Go to [Bootswatch](https://bootswatch.com/) and select a theme from the `Themes` dropdown
 >
 > Select the dropdown of the name of the style you selected. For example, if you like the `Flatly` style, you should see a `Flatly` dropdown as the last nav bar item on the left
@@ -162,3 +177,13 @@ $ git commit -m 'added createdAt, footer, and bootstrap theme'
 $ git push
 $ git push heroku master
 ```
+
+Congrats! Not too shabby for one of your first web apps! We encourage you to check out the stretch challenges in the last chapter to build this out even further!
+
+# Feedback and Review - 2 minutes
+
+**We promise this won't take longer than 2 minutes!**
+
+Please take a moment to rate your understanding of learning outcomes from this tutorial, and how we can improve it via our [tutorial feedback form](https://forms.gle/gnEK8jAjRHb5cD5e6)
+
+This allows us to get feedback on how well the students are grasping the learning outcomes, and tells us where we can improve the tutorial experience.

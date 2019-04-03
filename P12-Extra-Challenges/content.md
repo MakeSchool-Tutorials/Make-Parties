@@ -3,7 +3,12 @@ title: "Extra Challenges"
 slug: extra-challenges
 ---
 
-If you'reFor more challenges read on!
+This last chapter is all stretch challenges for those who want to dive deeper into the following areas:
+
+- Refactoring the code to be more efficient
+- Adding additional functionality (such as comments)
+
+If any of those sound interesting to you, check them out! We highly encourage it!
 
 
 # Async / Await

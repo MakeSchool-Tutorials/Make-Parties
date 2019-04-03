@@ -103,7 +103,7 @@ $ git push
 $ git push heroku master
 ```
 
-Before you can test your project on heroku, remember we made some changes to our DB, and we need to run the migrations on Heroku:
+Before you can test your project on Heroku, remember we made some changes to our DB, and we need to run the migrations on Heroku:
 
 > [action]
 >
@@ -115,7 +115,7 @@ $ sequelize -m # this just makes sure sequelize is installed
 $ sequelize db:migrate
 ```
 
-Open up your heroku project and do some manual testing. Great work!
+Open up your Heroku project and do some manual testing. Great work!
 
 # What Happened
 
@@ -129,22 +129,4 @@ So now we've completed all our user stories
 1. Users can rsvp on events (rsvps/create)
 1. Users can delete rsvps (rsvps/destroy)
 
-You used **Resource Based Development** and **Resourceful Routing** to build a event based app.
-
-# Feedback and Review - 2 minutes
-
-**We promise this won't take longer than 2 minutes!**
-
-Please take a moment to rate your understanding of learning outcomes from this tutorial, and how we can improve it via our [tutorial feedback form](https://forms.gle/gnEK8jAjRHb5cD5e6)
-
-This allows us to get feedback on how well the students are grasping the learning outcomes, and tells us where we can improve the tutorial experience.
-
-# Stretch Challenges
-
-The next two chapters are all stretch challenges for those who want to dive deeper into the following areas:
-
-- Improving the stylistic areas of the site
-- Refactoring the code to be more efficient
-- Adding additional functionality (such as comments)
-
-If any of those sound interesting to you, check them out! We highly encourage it!
+You used **Resource Based Development** and **Resourceful Routing** to build a event based app! Now let's put some final touches on it to really tie it all together.
