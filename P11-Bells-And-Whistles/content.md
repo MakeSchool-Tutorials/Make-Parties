@@ -83,7 +83,7 @@ Finally, let's use our new property:
 Reload your browser and check the timestamp. Doesn't that look so much better?
 
 > [info]
-> Want it to display differently? Use the [moment documentation](https://momentjs.com/) to tweek the **format string** until you are happy with how the text displays.
+> Want it to display differently? Use the [moment documentation](https://momentjs.com/) to tweak the **format string** until you are happy with how the text displays.
 
 # Adding a Footer
 
