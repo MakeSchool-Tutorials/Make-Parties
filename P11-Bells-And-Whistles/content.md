@@ -69,7 +69,7 @@ Finally, let's use our new property:
 
 > [action]
 >
-> Update `views/events-show.handlebars` to include the `createdAt` property:
+> Update `views/events-show.handlebars` to include the `createdAtFormatted` property:
 >
 ```html
 <!-- views/events-show.handlebars -->
