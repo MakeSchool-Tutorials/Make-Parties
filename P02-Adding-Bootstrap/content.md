@@ -136,42 +136,40 @@ Let's add some bootstrap to make things look better. First we'll wrap things in 
 > [action]
 >
 > Update `views/events-index.handlebars` to the following:
->
-```html
-<!-- events-index -->
->
-<div class="row mt-4">
-    <div class="col-lg-6 offset-lg-3">
-        <h1>Events</h1>
-        {{#each events}}
-            <h2>{{this.title}}</h2>
-            <img class="img-fluid" src="{{this.imgUrl}}" alt="Card image cap">
-            <p>{{this.description}}</p>
-        {{/each}}
-    </div>
-</div>
-```
+>```html
+  <!-- events-index -->
+  <div class="row mt-4">
+      <div class="col-lg-6 offset-lg-3">
+          <h1>Events</h1>
+          {{#each events}}
+              <h2>{{this.title}}</h2>
+              <img class="img-fluid" src="{{this.imgUrl}}" alt="Card image cap">
+              <p>{{this.description}}</p>
+          {{/each}}
+      </div>
+  </div>
+>```
 
 Next we'll add some Bootstrap Card enhanced html inside of the `#each`:
 
 > [action]
 >
 > Update the inside of the `#each` in `views/events-index.handlebars` to the following:
-```html
-{{#each events}}
-  <div class="card mt-3">
-    <img class="card-img-top" src="{{this.imgUrl}}" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">{{this.title}}</h5>
-      <p class="card-text">{{this.desc}}</p>
-      <div class="text-right">
-        <a href="#" class="btn btn-info">Rsvp</a>
-        <a href="#" class="btn btn-primary">View</a>
+> ```html
+  {{#each events}}
+    <div class="card mt-3">
+      <img class="card-img-top" src="{{this.imgUrl}}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{this.title}}</h5>
+        <p class="card-text">{{this.desc}}</p>
+        <div class="text-right">
+          <a href="#" class="btn btn-info">Rsvp</a>
+          <a href="#" class="btn btn-primary">View</a>
+        </div>
       </div>
     </div>
-  </div>
-{{/each}}
-```
+  {{/each}}
+>```
 
 # Product So Far
 
