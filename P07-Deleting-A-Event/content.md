@@ -63,8 +63,6 @@ $ git commit -m 'Users can destroy events'
 $ git push
 ```
 
-# But Wait!
-
 But there is still one problem. All the event routes are all hanging out in the `app.js` file. This breaks the **Separation of Concerns** principle of clean and **Good Smelling** code. Let's pull out these routes into their own events **Controller**.
 
 # Refactoring and Adding a Controller

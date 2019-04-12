@@ -10,8 +10,8 @@ Following our **User Stories** we are going to define a single **Resource** in t
 1. Users can view one event (show)
 1. Users can delete a event (destroy)
 1. Users can edit a event (edit/update)
-1. Users can comment on events (comments#create)
-1. Users can delete comments on events (comments#destroy)
+1. Users can rsvp to events (comments#create)
+1. Users can delete rsvps to events (comments#destroy)
 
 A **Resource** is an abstract object that we use to organize data, code, and the features of our app. For example, a `User` resource we can keep track of logging in and out, email and passwords, and people's birthdays. In a blog, we might have an `Article` or `Post` resource where we would track the titles and bodies of articles and keep track of the code for publishing and sharing them.
 

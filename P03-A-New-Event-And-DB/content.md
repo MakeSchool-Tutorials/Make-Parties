@@ -176,11 +176,11 @@ If you are running your development environment on your computer, you'll have to
 
 # Setting up Sequelize on your Project
 
-Follow the [Quick Start: Getting Connected] guide in the [Sequelize-It](https://ajbraus.github.io/sequelize-it/#/?id=quick-start-getting-connected) documentation.
+Follow the [Quick Start: Getting Connected](https://ajbraus.github.io/sequelize-it/#/?id=quick-start-getting-connected) guide in the [Sequelize-It](https://ajbraus.github.io/sequelize-it/) documentation.
 
 # Creating your First Model & Migration
 
-A **Model** is like a cookiecutter. You use it to define the attributes and behavior of a resource. Models are also used to interact with a database. We'll use our models every time we want to either save or read something from our database.
+A **Model** is like a cookie-cutter. You use it to define the attributes and behavior of a resource. Models are also used to interact with a database. We'll use our models every time we want to either save or read something from our database.
 
 A **Migration** is some code we use to define the tables and columns of our SQL database. We always have to define the tables and columns before we try to read or write data to them.
 
