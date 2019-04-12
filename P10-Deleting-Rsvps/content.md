@@ -3,9 +3,17 @@ title: "Deleting Comments"
 slug: deleting-rsvps
 ---
 
+1. ~~Users can view all events (index)~~
+1. ~~Users can create a event (new/create)~~
+1. ~~Users can view one event (show)~~
+1. ~~Users can edit a event (edit/update)~~
+1. ~~Users can delete a event (destroy)~~
+1. ~~Users can rsvp to events (/rsvps/create, /rsvps/new)~~
+1. **Users can cancel their rsvp (/rsvps/destroy)**
+
 Finally, since we are creating rsvps, we should also be able to delete them.
 
-Remember that currently we do not have authentication so we'll just be letting any user create and delete rsvps. As we developed this project for a go live, we would probably add authentication and only allow people to delete their own rsvps!
+Remember that currently we do not have authentication so we'll just be letting any user create and delete rsvps. If we developed this project for a real production use case, we would want to add authentication and only allow people to delete their own rsvps!
 
 # Deleting Comments
 
@@ -30,13 +38,17 @@ We'll use the `:id` url parameter to look up the rsvp we want to destroy.
 
 As always, we start with what the users sees and does. So let's make a link to delete a rsvp.
 
-We can't set an `<a>` tag's method (it is always GET) so we are going to use a form to submit a DELETE request to our delete action path. Let's add this button to each rsvps shown in the event: `views/events-show.handlebars`.
+We can't set an `<a>` tag's method (it is always GET) so we are going to use a form to submit a DELETE request to our delete action path.
 
+> [action]
+>
+> Add a button to each rsvp shown in an event by replacing the `.list-group mt-4` block in `views/events-show.handlebars` with the following:
+>
 ```HTML
 <!-- views/events-show.handlebars -->
   ...
     <div class="list-group mt-4">
-      {{#each rsvps}}
+      {{#each event.Rsvps}}
         <div class="list-group-item clearfix">
           <div class="float-left">
             {{this.name}}
@@ -52,25 +64,35 @@ We can't set an `<a>` tag's method (it is always GET) so we are going to use a f
   ...
 ```
 
-Again this form, if you submit it, won't work yet, because the route it points to does not exist. That is our next step. Notice how we always move from what the user interacts with, to the controllers, and then finally to the models and database, and not the other way around. We do this intentionally because it is faster, and makes leaner more usable code and products.
+If you try to submit this form, it won't work yet, because the route it points to does not exist. That is our next step.
+
+> [info]
+>
+> Notice how we always move from what the user interacts with, to the controllers, and then finally to the models and database, and not the other way around. We do this intentionally because it is faster, and makes leaner more usable code and products.
 
 # Adding the Destroy Route
 
 Now we need a destroy action route. After deleting the rsvp, it should redirect back to the parent event (`events-show`).
 
+> [action]
+>
+> Add the following `/delete` route to `controllers/rsvps.js`:
+>
 ```js
 // controllers/rsvps.js
 ...
-  // RSVPS#DELETE
+  // DELETE
   app.delete('/events/:eventId/rsvps/:id', (req, res) => {
-    models.Rsvp.findById(req.params.id).then(rsvp => {
-      rsvp.destroy();
-      res.redirect(`/events/${req.params.eventId}`);
-    });
+      models.Rsvp.findByPk(req.params.id).then(rsvp => {
+          rsvp.destroy();
+          res.redirect(`/events/${req.params.eventId}`);
+      }).catch((err) => {
+          console.log(err);
+      });
   });
 ```
 
-Ok so now try deleting a rsvp.
+Now try deleting a rsvp.
 
 # Git Commit and Push, and Push to Heroku
 
@@ -81,7 +103,19 @@ $ git push
 $ git push heroku master
 ```
 
-Open up your heroku project and do some manual testing. Great work!
+Before you can test your project on Heroku, remember we made some changes to our DB, and we need to run the migrations on Heroku:
+
+> [action]
+>
+> Run the migrations on Heroku
+>
+```bash
+$ heroku run bash
+$ sequelize -m # this just makes sure sequelize is installed
+$ sequelize db:migrate
+```
+
+Open up your Heroku project and do some manual testing. Great work!
 
 # What Happened
 
@@ -92,7 +126,7 @@ So now we've completed all our user stories
 1. Users can view one event (show)
 1. Users can delete a event (destroy)
 1. Users can edit a event (edit/update)
-1. Users can rsvp on events (rsvps#create)
-1. Users can delete rsvps (rsvps#destroy)
+1. Users can rsvp on events (rsvps/create)
+1. Users can delete rsvps (rsvps/destroy)
 
-You used **Resource Based Development** and **Resourceful Routing** to build a event based app.
+You used **Resource Based Development** and **Resourceful Routing** to build a event based app! Now let's put some final touches on it to really tie it all together.
