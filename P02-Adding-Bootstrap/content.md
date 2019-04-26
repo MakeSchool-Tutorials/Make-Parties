@@ -136,6 +136,7 @@ Let's add some bootstrap to make things look better. First we'll wrap things in 
 > [action]
 >
 > Update `views/events-index.handlebars` to the following:
+
 >```html
   <!-- events-index -->
   <div class="row mt-4">
@@ -155,6 +156,7 @@ Next we'll add some Bootstrap Card enhanced html inside of the `#each`:
 > [action]
 >
 > Update the inside of the `#each` in `views/events-index.handlebars` to the following:
+
 > ```html
   {{#each events}}
     <div class="card mt-3">
