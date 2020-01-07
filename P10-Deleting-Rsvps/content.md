@@ -1,5 +1,5 @@
 ---
-title: "Deleting Comments"
+title: "Deleting RSVPs"
 slug: deleting-rsvps
 ---
 
@@ -15,7 +15,7 @@ Finally, since we are creating rsvps, we should also be able to delete them.
 
 Remember that currently we do not have authentication so we'll just be letting any user create and delete rsvps. If we developed this project for a real production use case, we would want to add authentication and only allow people to delete their own rsvps!
 
-# Deleting Comments
+# Deleting RSVPs
 
 You need to define a route. Here is the list of the current routes with a new one added for the rsvp form at the bottom.
 
