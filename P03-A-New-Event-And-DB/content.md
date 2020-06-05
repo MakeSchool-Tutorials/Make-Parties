@@ -219,6 +219,8 @@ Cool, Postgres installed, now we gotta work on Sequelize:
 >
 > Example: `npm install sequelize sequelize-cli pg pg-hstore`
 
+You will need these packages to be available in both development and in production in heroku.
+
 # Creating your First Model & Migration
 
 A **Model** is like a cookie cutter. You use it to define the attributes and behavior of a resource. Models are also used to interact with a database. We'll use our models every time we want to either save or read something from our database.
