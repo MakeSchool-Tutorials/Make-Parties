@@ -102,8 +102,12 @@ Now if we go to the route, we'll see the error that no template `events-show` is
 <img src={{event.imgUrl}} />
 <h1>{{event.title}}</h1>
 <h2>{{event.desc}}</h2>
-
 ```
+
+<!-- -->
+
+> [info]
+> You might need to add `dataValues`, (e.g. `event.dataValues.imgUrl`, `event.dataValues.title`, `event.dataValues.desc`) to make attributes render depending on your OS, and handlebars.
 
 Now what do you see? All the `View` links to events should work now!
 

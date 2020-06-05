@@ -138,7 +138,7 @@ First, you need to get ready to accept form data using an npm module called [bod
 > Install `body-parser`:
 >
 ```bash
-$ npm install body-parser --save
+$ npm install body-parser
 ```
 
 Body Parser is a module that allows express to see form data that is coming in from a POST request. So we'll initialize the `body-parser` module in our `app.js` file.
@@ -217,7 +217,7 @@ Cool, Postgres installed, now we gotta work on Sequelize:
 > **IMPORTANT NOTE 1:** It's very important to follow all 8 steps in the Quick Start, especially in terms of getting the `config.json` file set up correctly. If you run into `ECONNREFUSED` or `ETIMEDOUT` errors, go back to the guide and make sure you followed all 8 steps correctly.
 > **IMPORTANT NOTE 2:** Make sure that when you do the `npm install` commands, you use a `-g` for the install so that it gets globally installed, otherwise you'll run into issues.
 >
-> Example: `npm install -g sequelize sequelize-cli pg pg-hstore --save`
+> Example: `npm install sequelize sequelize-cli pg pg-hstore`
 
 # Creating your First Model & Migration
 
