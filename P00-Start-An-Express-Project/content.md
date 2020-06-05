@@ -145,7 +145,7 @@ Our main file of our whole application we'll call `app.js`
 > First install Express.js and then create the main file using the `touch` command.
 >
 ```bash
-$ npm install express --save
+$ npm install express
 $ touch app.js
 ```
 
@@ -228,7 +228,7 @@ Let's add our templating engine Handlebars.js so our Express.js server can rende
 > Install Handlebars.js to your project using the `express-handlebars` node module.
 >
 ```bash
-$ npm install express-handlebars --save
+$ npm install express-handlebars
 ```
 
 Now that we've installed the package, we must require it or **initialize** it in your app:
@@ -239,7 +239,7 @@ Now that we've installed the package, we must require it or **initialize** it in
 >
 ```js
 // require handlebars
-var exphbs = require('express-handlebars');
+const exphbs = require('express-handlebars');
 >
 // Use "main" as our default layout
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
@@ -270,7 +270,6 @@ Refresh your browser now and read the error you get carefully. This error tells 
 
 > [action]
 > Create the `views`, `layouts` folders and `main.handlebars` and file.
-
 ```bash
 $ mkdir views
 $ mkdir views/layouts
@@ -301,7 +300,7 @@ Now we'll add some boilerplate code to the `main.handlebars` layout template. Re
 </html>
 ```
 
-Now we can make our `views/home.handlebars` template, which will use `main.handlebars` as a boilerplate, but what we write in `home.handlebars` will render in the `{{{body}}}` portion of `main.handlebars`:
+Now we can make our `views/home.handlebars` template (a new file in our `views` director). This template will use `main.handlebars` as a boilerplate, but what we write in `home.handlebars` will render in the `{{{body}}}` portion of `main.handlebars`:
 
 > [action]
 >

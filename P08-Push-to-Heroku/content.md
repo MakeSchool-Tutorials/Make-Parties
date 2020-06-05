@@ -172,9 +172,12 @@ We will still have problems though because we need to update our `config.json`.
    "use_env_variable": "DATABASE_URL",
    "dialect": "postgres",
    "dialectOptions": {
-      "ssl": true
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
     }
- }
+  }
 ```
 
 We also need to add a Heroku config variable to mark that we are in production:

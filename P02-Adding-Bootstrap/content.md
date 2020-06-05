@@ -65,7 +65,6 @@ To do this, we need to make a new **partial**. Partials are like html components
 > Create a new folder `views/partials`, and then create a new file `navbar.handlebars` in that `views/partials` directory.
 >
 > Now add the following code to `views/partials/navbar.handlebars`
-
 ```html
 <!-- views/partials/navbar.handlebars -->
 
