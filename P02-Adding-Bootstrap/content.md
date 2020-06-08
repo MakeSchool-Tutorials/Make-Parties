@@ -28,7 +28,6 @@ We'll add the `<link>` to bootstrap's css in our `<head>` tag in the `views/layo
 <!-- -->
 
 > [action]
->
 > Add the following `<link>` and `<script>` tags to `views/layouts/main.handlebars`:
 >
 ```html
@@ -61,10 +60,10 @@ Add the most common navigational component - a top navbar. We'll have it contain
 To do this, we need to make a new **partial**. Partials are like html components that you can reuse in multiple views. They only contain enough html to render the component, hence why they're called a "partial".
 
 > [action]
->
 > Create a new folder `views/partials`, and then create a new file `navbar.handlebars` in that `views/partials` directory.
 >
 > Now add the following code to `views/partials/navbar.handlebars`
+>
 ```html
 <!-- views/partials/navbar.handlebars -->
 
