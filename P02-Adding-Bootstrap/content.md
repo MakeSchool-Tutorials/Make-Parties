@@ -65,8 +65,6 @@ To do this, we need to make a new **partial**. Partials are like html components
 > Now add the following code to `views/partials/navbar.handlebars`
 >
 ```html
-<!-- views/partials/navbar.handlebars -->
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Make Parties</a>
 
