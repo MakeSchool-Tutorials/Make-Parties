@@ -80,6 +80,14 @@ app.get('/', (req, res) => {
 })
 ```
 
+Are you seeing your title and description text yet? Probably not because Handlebars went and added an extra layer to their library—ostensibly for security's sake—but for our purposes it just gets in the way. We're going to take this layer of security away to simplify building our project. 
+
+> [action]
+> 
+> Follow the instructions posted on [this github issue](https://github.com/handlebars-lang/handlebars.js/issues/1648#issuecomment-582241258).
+> Ignore changing your handlebars file extension to `.hbs`, just add the prototype access.
+>
+
 Now the only problem is the images are not showing because we don't have an `imgUrl` attribute. Let's add that in the next step:
 
 # Adding a New Attribute to our Model
