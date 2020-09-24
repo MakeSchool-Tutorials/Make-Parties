@@ -203,8 +203,10 @@ If you are running your development environment on your computer, you'll have to
 
 > [action]
 >
-> Follow the steps outlined at [Postgres.app](https://postgresapp.com/) to get everything set up.
+> 1. Follow the steps outlined at [Postgres.app](https://postgresapp.com/) to get everything set up.
 > **Note:** Once you've installed, make sure to close/reopen your terminal for the changes to take effect.
+>
+> 2. Now use `$ brew install postgresql` in your terminal to finish installing
 
 # Setting up Sequelize on your Project
 
