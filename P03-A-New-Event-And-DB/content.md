@@ -256,9 +256,9 @@ Our migration is a bit longer and adds a few other attributes to our Event:
 We'll use the `id` to fetch instances of events, and we'll use `createdAt` and `updatedAt` to order them.
 
 > [action]
-> First make sure your ports match what sequelize is expecting: port **3306**. Not doing this will throw an error when running the next command:
+<!-- > First make sure your ports match what sequelize is expecting: port **3306**. Not doing this will throw an error when running the next command:
 >
-> ![port](assets/port.png)
+> ![port](assets/port.png) -->
 >
 > Start the server back up, and then run the migrations:
 >
