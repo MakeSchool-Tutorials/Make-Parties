@@ -211,23 +211,23 @@ Now in the migration, let's add the EventId column then we are going to change t
 >
 module.exports = {
   up: (queryInterface, Sequelize) => {
->
-    return queryInterface.addColumn('Rsvps', 'EventId', Sequelize.INTEGER).then(() => {
-      return queryInterface.addConstraint('Rsvps', ['EventId'], {
-        type: 'foreign key',
-        name: 'event_rsvps',
+    return queryInterface.addColumn(
+      'Rsvps', // name of source model
+      'EventId', // name of key we are adding
+      { 
+        type: Sequelize.INTEGER,
         references: { //Required field
-          table: 'Events',
-          field: 'id'
+          model: 'Events',
+          key: 'id'
         },
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE'
-      });
-    });
+      }
+    );
   },
 >
   down: (queryInterface, Sequelize) => {
-    return queryInterface.removeColumn('Rsvps', 'EventId');  
+    return queryInterface.removeColumn('Rsvps', 'EventId');
   }
 };
 ```
