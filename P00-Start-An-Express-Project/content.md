@@ -222,13 +222,15 @@ From the `console.log` inside of `app.listen(3000 ...)`! Make sure to refresh yo
 
 Now, we are going to need to render HTML for our project, so we have to add a **Templating Engine** if we want extend Express.js to use HTML.
 
-Let's add our templating engine Handlebars.js so our Express.js server can render templates. This is called _server-side HTML templates_.
+Let's add our templating engine Handlebars.js so our Express.js server can render templates. This is called _server-side HTML templates_. 
+
+We're also going to add a package called `allow-prototype-access` to avoid a common error we will run into later.
 
 > [action]
 > Install Handlebars.js to your project using the `express-handlebars` node module.
 >
 ```bash
-$ npm install express-handlebars
+$ npm install express-handlebars @handlebars/allow-prototype-access
 ```
 
 Now that we've installed the package, we must require it or **initialize** it in your app:
@@ -240,9 +242,11 @@ Now that we've installed the package, we must require it or **initialize** it in
 ```js
 // require handlebars
 const exphbs = require('express-handlebars');
+const Handlebars = require('handlebars')
+const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
 >
 // Use "main" as our default layout
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.engine('handlebars', exphbs({ defaultLayout: 'main', handlebars: allowInsecurePrototypeAccess(Handlebars) }));
 // Use handlebars to render
 app.set('view engine', 'handlebars');
 ```
